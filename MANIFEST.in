@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include dn_auto_creation *.css
+recursive-include dn_auto_creation *.csv
+recursive-include dn_auto_creation *.html
+recursive-include dn_auto_creation *.ico
+recursive-include dn_auto_creation *.js
+recursive-include dn_auto_creation *.json
+recursive-include dn_auto_creation *.md
+recursive-include dn_auto_creation *.png
+recursive-include dn_auto_creation *.py
+recursive-include dn_auto_creation *.svg
+recursive-include dn_auto_creation *.txt
+recursive-exclude dn_auto_creation *.pyc
