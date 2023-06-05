@@ -25,11 +25,12 @@ app_license = "MIT"
 # webform_include_js = {"doctype": "public/js/doctype.js"}
 # webform_include_css = {"doctype": "public/css/doctype.css"}
 
-# include js in page
+# include js in page doctype_js = dn_auto_creation/dn_auto_creation/public/js/dn.js
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Sales Invoice" : "public/js/dn.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -139,9 +140,9 @@ app_license = "MIT"
 # Overriding Methods
 # ------------------------------
 #
-# override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "dn_auto_creation.event.get_events"
-# }
+override_whitelisted_methods = {
+	"erpnext.controllers.queries.get_delivery_notes_to_be_billed": "dn_auto_creation.overrides.filter_dn.get_delivery_notes_to_be_billed"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
@@ -199,3 +200,23 @@ app_license = "MIT"
 # auth_hooks = [
 #	"dn_auto_creation.auth.validate"
 # ]
+
+
+doc_events = {
+    "Delivery Note": {
+       
+        "before_save": "dn_auto_creation.setup.make_custom_fields"
+        
+        
+    }}
+fixtures = [
+    {
+        'dt': 'Custom Field',
+        'filters': {
+            'name': ['in', [
+                'Delivery Note- returned',
+                
+                
+            ]]
+        }
+    }]
