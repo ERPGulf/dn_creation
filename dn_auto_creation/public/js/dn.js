@@ -1070,15 +1070,15 @@ var select_loyalty_program = function(frm, loyalty_programs) {
 	dialog.show();
 }
 frappe.ui.form.on('Sales Invoice', {
-    on_submit:function(frm) {
-          console.log("Just before save")
-        if (frm.doc.is_return == 1) {
-         console.log("After is_return")
-         var arrays = []
-         $.each(frm.doc.items, function(i, d){
-             console.log("hello")
-             
-        arrays.push(d.delivery_note)
+	on_submit:function(frm) {
+		  console.log("Just before save")
+		if (frm.doc.is_return == 1) {
+		 console.log("After is_return")
+		 var arrays = []
+		 $.each(frm.doc.items, function(i, d){
+			 console.log("hello")
+			 
+		arrays.push(d.delivery_note)
 })
 let uniquedn = [];
 arrays.forEach((c) => {
@@ -1097,11 +1097,11 @@ if (uniquedn[k] == e.delivery_note){
 console.log("*********")
 item.push({
   'item_code' : e.item_code,
-                               'item_name' : e.item_name,
-                               'rate' : e.rate,
-                               'qty':e.qty
-                            
-              })
+							   'item_name' : e.item_name,
+							   'rate' : e.rate,
+							   'qty':e.qty
+							
+			  })
 
 
 }
@@ -1111,15 +1111,15 @@ console.log(item)
 
 let ticket = {
 'doctype': 'Delivery Note',
-    'customer': frm.doc.customer,
-    'set_warehouse': frm.doc.set_warehouse,
-    'selling_price_list': 'Standard Selling',
-    'docstatus':0,
-    'is_return':1,
-    'return_against':uniquedn[k],
-    'items': item
-             
-          
+	'customer': frm.doc.customer,
+	'set_warehouse': frm.doc.set_warehouse,
+	'selling_price_list': 'Standard Selling',
+	'docstatus':0,
+	'is_return':1,
+	'return_against':uniquedn[k],
+	'items': item
+			 
+		  
 //  console.log(items) 
 }
 frappe.db.insert(ticket).then( (doc) =>{
@@ -1130,10 +1130,10 @@ console.log(document_name)
 frappe.call({
   "method": "frappe.client.set_value",
   "args": {
-      "doctype": "Delivery Note",
-      "name": uniquedn[k],
-      "fieldname": {"dn_return_no":document_name,"dn_return_date":document_date,"returned": 1}
-      
+	  "doctype": "Delivery Note",
+	  "name": uniquedn[k],
+	  "fieldname": {"dn_return_no":document_name,"dn_return_date":document_date,"returned": 1}
+	  
   }
 });
 
@@ -1142,8 +1142,8 @@ frappe.call({
 })
 
 }
-        }
-      
-    },
-    
+		}
+	  
+	},
+	
 });

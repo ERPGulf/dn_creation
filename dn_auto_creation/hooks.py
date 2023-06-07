@@ -202,21 +202,11 @@ override_whitelisted_methods = {
 # ]
 
 
-doc_events = {
-    "Delivery Note": {
+# doc_events = {
+#     "Delivery Note": {
        
-        "before_save": "dn_auto_creation.setup.make_custom_fields"
+#         "before_save": "dn_auto_creation.setup.make_custom_fields"
         
         
-    }}
-fixtures = [
-    {
-        'dt': 'Custom Field',
-        'filters': {
-            'name': ['in', [
-                'Delivery Note- returned',
-                
-                
-            ]]
-        }
-    }]
+#     }}
+fixtures = ["Custom Field"]
