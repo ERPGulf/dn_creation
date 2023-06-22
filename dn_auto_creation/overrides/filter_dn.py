@@ -22,7 +22,7 @@ from frappe.model.db_query import DatabaseQuery
 
 from frappe.utils import nowdate, unique
 
-
+# get matching conditions
 def get_match_cond(doctype, as_condition=True):
 	cond = DatabaseQuery(doctype).build_match_conditions(as_condition=as_condition)
 	if not as_condition:
@@ -30,6 +30,7 @@ def get_match_cond(doctype, as_condition=True):
 
 	return ((" and " + cond) if cond else "").replace("%", "%%")
 
+# get matching conditions
 def get_filters_cond(
 	doctype, filters, conditions, ignore_permissions=None, with_match_conditions=False
 ):
@@ -80,6 +81,7 @@ def get_filters_cond(
 	else:
 		cond = ""
 	return cond
+# get search fields
 def get_fields(doctype, fields=None):
 	if fields is None:
 		fields = []
@@ -90,6 +92,7 @@ def get_fields(doctype, fields=None):
 		fields.insert(1, meta.title_field.strip())
 
 	return unique(fields)
+# get the delivery notes to be billed
 @frappe.whitelist(allow_guest = True)
 @frappe.validate_and_sanitize_search_inputs
 def get_delivery_notes_to_be_billed(doctype, txt, searchfield, start, page_len, filters, as_dict):
