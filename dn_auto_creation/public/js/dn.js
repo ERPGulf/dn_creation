@@ -1099,7 +1099,8 @@ frappe.ui.form.on('Sales Invoice', {
 							'item_code': e.item_code,
 							'item_name': e.item_name,
 							'rate': e.rate,
-							'qty': e.qty
+							'qty': e.qty,
+							'warehouse': e.warehouse
 
 						})
 
@@ -1114,7 +1115,7 @@ frappe.ui.form.on('Sales Invoice', {
 					'doctype': 'Delivery Note',
 					'customer': frm.doc.customer,
 					'branch': frm.doc.branch,
-					'set_warehouse': frm.doc.set_warehouse,
+					'set_warehouse': frm.doc.warehouse,
 					'selling_price_list': 'Standard Selling',
 					'docstatus': 0,
 					'is_return': 1,
@@ -1135,7 +1136,7 @@ frappe.ui.form.on('Sales Invoice', {
 				// console.log("here the item ")
 				// console.log(ticket)
 				frappe.db.insert(ticket).then((doc) => {
-					var document_name = doc.name
+					var document_name = doc.name	
 					var document_date = doc.posting_date
 					var document_branch = doc.branch
 					
